@@ -81,4 +81,4 @@ API Endpoints
 2. /api/auth/login/ -> Login
    Copy the `access` token from response.
 
-Made by **\Saddam Hussain Mansuri** as part of Janitri assignment.
+Made by Saddam Hussain Mansuri** as part of Janitri assignment.
