@@ -3,8 +3,6 @@
 This is my backend assignment made using Django and Django REST Framework.
 It has user registration and login, patient management and heart rate recording API.
 
----
-
 ## Features
 
 * User registration and JWT login
@@ -30,16 +28,8 @@ It has user registration and login, patient management and heart rate recording 
 1. Clone the repo
 
    ```bash
-   git clone https://github.com/<your-username>/janitri-assignment.git
+   git clone https://github.com/shmansuri/janitri-assignment.git
    cd janitri-assignment
-   ```
-
-2. Create virtual environment
-
-   ```bash
-   python -m venv venv
-   venv\Scripts\activate   # for windows
-   source venv/bin/activate  # for linux/mac
    ```
 
 3. Install requirements
@@ -50,35 +40,26 @@ It has user registration and login, patient management and heart rate recording 
 
 4. Run migrations
 
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
-
 5. Run server
 
-   ```bash
-   python manage.py runserver
-   ```
+http://127.0.0.1:8000/
 
-Server will start at `http://127.0.0.1:8000/`
+API Endpoints
 
----
+ Auth
 
-## API Endpoints
+* /api/auth/register/ → Register new user
+* /api/auth/login/ → Login and get JWT token
 
-### Auth
+ For Patients
 
-* `POST /api/auth/register/` → Register new user
-* `POST /api/auth/login/` → Login and get JWT token
+* GET /api/patients/ → List patients (need login)
+* POST /api/patients/ → Add new patient (need login)
+* GET /api/patients/<id>/ → Get patient details
 
-### Patients
 
-* `GET /api/patients/` → List patients (need login)
-* `POST /api/patients/` → Add new patient (need login)
-* `GET /api/patients/<id>/` → Get patient details
 
-### Heart Rate
+ Heart Rate
 
 * `POST /api/patients/<id>/heartrate/` → Add heart rate for patient
 * `GET /api/patients/<id>/heartrate/` → List heart rates of patient
@@ -91,32 +72,13 @@ Server will start at `http://127.0.0.1:8000/`
 
    ```json
    {
-     "username": "testuser",
-     "email": "test@example.com",
-     "password": "testpass"
+     "username": "username",
+     "email": "<user_Email>",
+     "password": "<Password>"
    }
    ```
 
-2. Login → `/api/auth/login/`
+2. /api/auth/login/ -> Login
    Copy the `access` token from response.
 
-3. In Postman (or any tool), set header:
-
-   ```
-   Authorization: Bearer <your_access_token>
-   ```
-
-4. Now you can call patient and heart rate APIs.
-
----
-
-## Notes
-
-* Used SQLite for database (no need to install extra db).
-* Default Django User model used.
-* `created_by` field in patient is auto linked with logged in user.
-* JWT access token is required for all protected APIs.
-
----
-
-Made by **\[Your Name]** as part of Janitri assignment.
+Made by **\Saddam Hussain Mansuri** as part of Janitri assignment.
