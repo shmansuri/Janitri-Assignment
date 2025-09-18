@@ -89,6 +89,8 @@ Paste the copied token into the token field.
 
 Now send the request — it will work if the token is valid.
 
+## API Documentation
+See [apidoc.txt](./apidoc.txt) for full API documentation with request/response examples.
 
 
 Made by Saddam Hussain Mansuri as part of Janitri assignment.

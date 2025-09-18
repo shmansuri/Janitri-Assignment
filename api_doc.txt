@@ -1,0 +1,164 @@
+## API Documentation
+
+Below are the main APIs with request and response examples.
+
+### 1. Register User
+
+**POST** `/api/auth/register/`
+No auth required.
+
+**Request body:**
+
+```json
+{
+  "username": "john123",
+  "email": "john@example.com",
+  "password": "mypassword",
+  "role": "doctor"
+}
+```
+
+**Response (201):**
+
+```json
+{
+  "id": 1,
+  "username": "john123",
+  "email": "john@example.com",
+  "role": "doctor"
+}
+```
+
+---
+
+### 2. Login
+
+**POST** `/api/auth/token/`
+No auth required.
+
+**Request body:**
+
+```json
+{
+  "username": "john123",
+  "password": "mypassword"
+}
+```
+
+**Response (200):**
+
+```json
+{
+  "refresh": "<refresh_token_here>",
+  "access": "<access_token_here>"
+}
+```
+
+---
+
+### 3. List Patients
+
+**GET** `/api/patients/`
+Auth required (Bearer token).
+
+**Response (200):**
+
+```json
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 30,
+      "gender": "male",
+      "address": "123 Street",
+      "created_by": "john123",
+      "created_at": "2025-09-18T12:34:56Z"
+    }
+  ]
+}
+```
+
+---
+
+### 4. Add Patient
+
+**POST** `/api/patients/`
+Auth required.
+
+**Request body:**
+
+```json
+{
+  "name": "Alice",
+  "age": 28,
+  "gender": "female",
+  "address": "Some address"
+}
+```
+
+**Response (201):**
+
+```json
+{
+  "id": 2,
+  "name": "Alice",
+  "age": 28,
+  "gender": "female",
+  "address": "Some address",
+  "created_by": "john123",
+  "created_at": "2025-09-18T13:00:00Z"
+}
+```
+
+---
+
+### 5. Add Heart Rate
+
+**POST** `/api/patients/<id>/heartrate/`
+Auth required.
+
+**Request body:**
+
+```json
+{
+  "bpm": 85,
+  "recorded_at": "2025-09-18T12:50:00Z"
+}
+```
+
+**Response (201):**
+
+```json
+{
+  "id": 1,
+  "patient": 2,
+  "bpm": 85,
+  "recorded_at": "2025-09-18T12:50:00Z",
+  "created_at": "2025-09-18T13:05:00Z"
+}
+```
+
+---
+
+### 6. List Heart Rates
+
+**GET** `/api/patients/<id>/heartrate/`
+Auth required.
+
+**Response (200):**
+
+```json
+[
+  {
+    "id": 1,
+    "patient": 2,
+    "bpm": 85,
+    "recorded_at": "2025-09-18T12:50:00Z",
+    "created_at": "2025-09-18T13:05:00Z"
+  }
+]
+```
