@@ -5,80 +5,90 @@ It has user registration and login, patient management and heart rate recording 
 
 ## Features
 
-* User registration and JWT login
-* Add and view patients
-* Record and fetch heart rate data of patient
-* Authentication required for patient and heart rate APIs
-* Pagination in list APIs
+1. User registration and JWT login
+2. Add and view patients
+3. Record and fetch heart rate data of patient
+4. Authentication required for patient and heart rate APIs
+5. Pagination in list APIs
 
----
 
 ## Tech Stack
 
-* Python 3.10
-* Django 5.0
-* Django REST Framework
-* Simple JWT (for login tokens)
-* SQLite database (default)
+Python 3.10
+Django 5.0
+Django REST Framework
+Simple JWT (for login tokens)
+SQLite database (default)
 
----
 
 ## Setup Instructions
 
 1. Clone the repo
 
-   ```bash
-   git clone https://github.com/shmansuri/janitri-assignment.git
-   cd janitri-assignment
-   ```
+   git clone https://github.com/shmansuri/JANITRI-ASSIGNMENT.git
 
-3. Install requirements
+   cd JANITRI-ASSIGNMENT
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+2. pip install -r requirements.txt
 
-4. Run migrations
+3. Run migrations
 
-5. Run server
-
-http://127.0.0.1:8000/
+4. Run server  http://127.0.0.1:8000/
 
 API Endpoints
 
- Auth
+/api/auth/register/ -> Register new user
+/api/auth/login/ -> Login and get JWT token
 
-* /api/auth/register/ → Register new user
-* /api/auth/login/ → Login and get JWT token
+For Patients 
 
- For Patients
+GET /api/patients/ -> List patients (need login)
+POST /api/patients/ -> Add new patient (need login)
+GET /api/patients/<id>/ -> Get patient details
 
-* GET /api/patients/ → List patients (need login)
-* POST /api/patients/ → Add new patient (need login)
-* GET /api/patients/<id>/ → Get patient details
+Heart Rate
+
+/api/patients/<id>/heartrate/ -> Add heart rate for patient(POST)
+/api/patients/<id>/heartrate/ -> List heart rates of patient(GET)
 
 
+APIs Test 
 
- Heart Rate
+1. Register user -> http://127.0.0.1:8000/api/auth/register/
 
-* `POST /api/patients/<id>/heartrate/` → Add heart rate for patient
-* `GET /api/patients/<id>/heartrate/` → List heart rates of patient
-
----
-
-## How to Test APIs
-
-1. Register user → `/api/auth/register/`
-
-   ```json
+   in json form
    {
      "username": "username",
      "email": "<user_Email>",
-     "password": "<Password>"
+     "password": "<Password>",
+     "role":"<Enter Your Role>"
    }
-   ```
 
-2. /api/auth/login/ -> Login
-   Copy the `access` token from response.
+2. Login User ->  http://127.0.0.1:8000/api/auth/token/
 
-Made by Saddam Hussain Mansuri** as part of Janitri assignment.
+{
+  "username": "<username>",
+  "password": "<Password123>"
+}
+
+
+
+Copy the access token from login response.
+
+
+### In Postman
+
+
+open the API request you want to test (e.g., /api/patients/).
+
+Go to the Authorization tab.
+
+Select Bearer Token from the dropdown.
+
+Paste the copied token into the token field.
+
+Now send the request — it will work if the token is valid.
+
+
+
+Made by Saddam Hussain Mansuri as part of Janitri assignment.
